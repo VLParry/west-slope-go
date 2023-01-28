@@ -8,11 +8,22 @@ const SignUpForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(email) 
+        const user = {
+            email,
+            password,
+            password_confirmation: passwordConfirmation,
+            name
+        }
+        fetch ('/signup', {
+            method: "POST",
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(user)
+        })
     }
     return (
+        <div className='auth-form-container'>
     <form onSubmit={handleSubmit}>
-        <label for="email">Email:</label>
+        <label htmlFor="email">Email:</label>
         <input 
         type="email" 
         placeholder="add your email" 
@@ -21,7 +32,7 @@ const SignUpForm = () => {
         name="email"
         onChange={(e) => setEmail(e.target.value)}
         />
-        <label for="password">Password:</label>
+        <label htmlFor="password">Password:</label>
         <input 
         type="password" 
         placeholder="create password" 
@@ -30,16 +41,16 @@ const SignUpForm = () => {
         name="password" 
         onChange={(e) => setPassword(e.target.value)}
         />
-        <label for="password_conf">Password confirmation:</label>
+        <label htmlFor="password">Password confirmation:</label>
         <input 
-        type="password_conf" 
+        type="password" 
         placeholder="confirm email" 
-        id="password_conf" 
+        id="password_confirmation" 
         value={passwordConfirmation}
-        name="password_conf" 
+        name="password_confirmation" 
         onChange={(e) => setPasswordConfirmation(e.target.value)}
         />
-        <label for="name">Your name:</label>
+        <label htmlFor="name">Your name:</label>
         <input 
         type="name" 
         placeholder="your name here" 
@@ -50,6 +61,8 @@ const SignUpForm = () => {
         />
         <button>Create User</button>
     </form>
+        <button>Already have an account? Click here to login!</button>
+    </div>
   )
 }
 

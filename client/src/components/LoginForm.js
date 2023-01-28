@@ -11,9 +11,9 @@ const LoginForm = () => {
     }
 
   return (
-    <>
+    <div className='auth-form-container'>
     <form onSubmit={handleSubmit}>
-        <label for="email">Email:</label>
+        <label htmlFor="email">Email:</label>
         <input 
         type="email" 
         placeholder="enter your email" 
@@ -22,7 +22,7 @@ const LoginForm = () => {
         name="email"
         onChange={(e) => setEmail(e.target.value)}
         />
-        <label for="password">Password:</label>
+        <label htmlFor="password">Password:</label>
         <input 
         type="password" 
         placeholder="enter password" 
@@ -34,7 +34,7 @@ const LoginForm = () => {
         <button>Sign In!</button>
         </form>
         <button>Don't have an account? Create one here!</button>
-        </>
+        </div>
   )
 }
 
