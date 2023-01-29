@@ -5,12 +5,12 @@ class SessionsController < ApplicationController
     #authenticate is a special method from bcrypt 
     #authenticate below, the params we pass in have the password and the user knows about the digest hash, when you authenticate it compares the password they put in (encrypt) to whats in the digest. if user exists and authenticates, save in the session hash
     def create 
-        user = User.find_by(username: params[:username])
+        user = User.find_by(email: params[:email])
         if user&.authenticate(params[:password])
             session[:user_id] = user.id 
             render json: user
         else
-            render json: {errors: ["Invalid username or password"]}, status: :unauthorized
+            render json: {errors: ["Invalid email or password"]}, status: :unauthorized
         end
     end
 
