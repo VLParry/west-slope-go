@@ -22,7 +22,7 @@ const SignUpForm = () => {
     }
     return (
         <div className='auth-form-container'>
-    <form onSubmit={handleSubmit}>
+    <form className="signup-form"onSubmit={handleSubmit}>
         <label htmlFor="email">Email:</label>
         <input 
         type="email" 
@@ -59,7 +59,7 @@ const SignUpForm = () => {
         name="name" 
         onChange={(e) => setName(e.target.value)}
         />
-        <button>Create User</button>
+        <button>Create Account</button>
     </form>
         <button>Already have an account? Click here to login!</button>
     </div>

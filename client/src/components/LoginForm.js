@@ -26,7 +26,7 @@ const LoginForm = ({onLogin}) => {
 
   return (
     <div className='auth-form-container'>
-    <form onSubmit={handleSubmit}>
+    <form className="login-form" onSubmit={handleSubmit}>
         <label htmlFor="email">Email:</label>
         <input 
         type="email" 
