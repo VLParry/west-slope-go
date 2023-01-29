@@ -1,13 +1,27 @@
 import React, { useState } from 'react'
 
 
-const LoginForm = () => {
+const LoginForm = ({onLogin}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    // const [errors, setErrors] = useState([])
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(email) 
+        fetch("/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json",},
+          body: JSON.stringify({ email, password}),
+        })
+        .then((r) => {
+          if (r.ok) {
+            r.json().then((user) => onLogin(user));
+          }
+          // else{
+          //   r.json().then((err) => setErrors(err.errors));
+          // }
+        })
     }
 
   return (
@@ -32,6 +46,11 @@ const LoginForm = () => {
         onChange={(e) => setPassword(e.target.value)}
         />
         <button>Sign In!</button>
+        {/* <FormField>
+          {errors.map((err) => (
+            <Error key={err}>{err}</Error>
+          ))}
+        </FormField> */}
         </form>
         <button>Don't have an account? Create one here!</button>
         </div>

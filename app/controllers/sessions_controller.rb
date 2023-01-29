@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-   skip_before_action :authorize, only: :create
+   skip_before_action :authorized, only: :create
    #above prevents everything except create to go through auth, you need to be authorized(signed in) to log out and use other functionality 
 
     #authenticate is a special method from bcrypt 
