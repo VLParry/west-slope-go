@@ -5,7 +5,7 @@ import Login from "./pages/Login"
 import SignUpForm from "./components/SignUpForm";
 import NavBar from "./components/NavBar";
 // import Activities from "./components/Activities";
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css';
 
 function App() {
@@ -31,18 +31,22 @@ if (!user) return <Login onLogin={setUser} />
 
   return (
     <div className="App">
-      <NavBar />
-      <h1>WestSlopeGo</h1>
+     
+    
 
       <SignUpForm />
+      
       <Home />
-      {/* <ul> */}
-        {/* {activities.map((activity) => (
-          <li key={activity.id}>
-            {activity.name}
-          </li>
-        ))}
-      </ul> */}
+      <Router>
+      <NavBar />
+      <Routes>
+        {/* <Route path="/" element={<Home />} />
+        <Route path="/towns" element={<Towns allTowns={towns} setTowns={setTowns}/>} />
+        <Route path="/towns/:id" element={<TownInfo allTowns={towns} setTowns={setTowns} townPlaygrounds={townPlaygrounds} setTownPlaygrounds={setTownPlaygrounds}/>} /> */}
+
+        {/* <Route path="/"> element={<Home />} /> */}
+      </Routes>
+      </Router>
 
       {/* {
       currentForm === "login" ? <LoginForm /> : <SignUpForm />
