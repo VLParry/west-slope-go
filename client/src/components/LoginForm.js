@@ -52,7 +52,7 @@ const LoginForm = ({onLogin}) => {
           ))}
         </FormField> */}
         </form>
-        <button>Don't have an account? Create one here!</button>
+   
         </div>
   )
 }

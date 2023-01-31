@@ -10,15 +10,16 @@ const Home = () => {
     .then((r) => r.json())
     .then(setActivities);
 }, []);
-
+console.log(activities)
   return (
     <div>
-        {activities.map((activity) => (
+        <ul>
+        {activities?.map((activity) => (
             <li>
             {activity.title}
             </li>
            )) }
-        
+        </ul>
             
     </div>
   )

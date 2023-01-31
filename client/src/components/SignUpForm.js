@@ -14,6 +14,7 @@ const SignUpForm = () => {
             password_confirmation: passwordConfirmation,
             name
         }
+        console.log(user)
         fetch ('/signup', {
             method: "POST",
             headers:{'Content-Type':'application/json'},
@@ -61,7 +62,7 @@ const SignUpForm = () => {
         />
         <button>Create Account</button>
     </form>
-        <button>Already have an account? Click here to login!</button>
+ 
     </div>
   )
 }

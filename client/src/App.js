@@ -12,7 +12,9 @@ function App() {
   const [user, setUser] = useState(null)
   // const [activities, setActivities] = useState=([])
   //autoLogin : ensures our user ID is saved to sessions.
+  
   useEffect(() => {
+    
   fetch("/auth")
     .then((r) => {
     if (r.ok) {
@@ -20,7 +22,7 @@ function App() {
     }
   });
 },[]);
-
+console.log("banana")
 if (!user) return <Login onLogin={setUser} />
 
 // useEffect(() => {
@@ -32,19 +34,17 @@ if (!user) return <Login onLogin={setUser} />
   return (
     <div className="App">
      
-    
-
-      <SignUpForm />
+     <NavBar setUser={setUser}/>
+{/* {!user ? <Login onLogin={setUser} /> :  <Home /> } */}
+      {/* <SignUpForm /> */}
       
-      <Home />
+     
       <Router>
-      <NavBar />
+     
       <Routes>
-        {/* <Route path="/" element={<Home />} />
-        <Route path="/towns" element={<Towns allTowns={towns} setTowns={setTowns}/>} />
-        <Route path="/towns/:id" element={<TownInfo allTowns={towns} setTowns={setTowns} townPlaygrounds={townPlaygrounds} setTownPlaygrounds={setTownPlaygrounds}/>} /> */}
+       
 
-        {/* <Route path="/"> element={<Home />} /> */}
+        <Route path="/" element={<Home />} />
       </Routes>
       </Router>
 
