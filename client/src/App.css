@@ -6,10 +6,31 @@
   justify-content: center;
   background-image: linear-gradient(79deg, green, white, green);
   flex-direction: column;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 .auth-form-container, .login-form, .signup-form {
   display: flex;
   flex-direction: column;
 }
+
+label {
+  text-align: left;
+  padding: 0.25rem 0;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+input {
+  border-radius: 15px;
+  border: none;
+  
+}
+
+.btn {
+  border-radius: 10px;
+  background-color: hwb(153 1% 52%);
+  color: white;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
 
