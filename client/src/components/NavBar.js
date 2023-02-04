@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -42,18 +43,7 @@ const NavBar = ({setUser}) => {
     setMenuEl(null);
   };
   return (
- 
-			// <AppBar>
-			// 	<ul id="nav-list">
-			// 		<li>West Slope Go!</li>
-				
-			// 	</ul>
-			// </AppBar>
-	
 
-
-
-    
     <Box sx={{ flexGrow: 1 }}>
     <FormGroup>
       <FormControlLabel
@@ -67,7 +57,7 @@ const NavBar = ({setUser}) => {
         label={auth ? 'Logout' : 'Login'}
       />
     </FormGroup>
-    <AppBar position="static">
+    <AppBar sx={{ bgcolor: "green" }} position="static">
       <Toolbar>
         <div>
         <IconButton
@@ -95,11 +85,13 @@ const NavBar = ({setUser}) => {
               open={Boolean(menuEl)}
               onClose={handleNavClose}
             >
-              <MenuItem onClick={handleNavClose}>Profile</MenuItem>
+              
+              <MenuItem to="activities" component= { Link }>All Activities</MenuItem>
+              <MenuItem onClick={handleNavClose}>Create New Activity</MenuItem>
               
             </Menu>
         </div>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Typography variant="h6" color="inherit" to="/" component= { Link } sx={{ flexGrow: 1 }}>
           West Slope Go
         </Typography>
         {auth && (
@@ -129,8 +121,8 @@ const NavBar = ({setUser}) => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={handleClose}>My Activities</MenuItem>
+              
             </Menu>
           </div>
         )}

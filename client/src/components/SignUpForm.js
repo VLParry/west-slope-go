@@ -45,7 +45,7 @@ const SignUpForm = () => {
         <label htmlFor="password">Password confirmation:</label>
         <input 
         type="password" 
-        placeholder="confirm email" 
+        placeholder="confirm password" 
         id="password_confirmation" 
         value={passwordConfirmation}
         name="password_confirmation" 
@@ -60,7 +60,7 @@ const SignUpForm = () => {
         name="name" 
         onChange={(e) => setName(e.target.value)}
         />
-        <button>Create Account</button>
+        <button className='btn' >Create Account</button>
     </form>
  
     </div>
