@@ -68,7 +68,7 @@ const NavBar = ({setUser}) => {
           sx={{ mr: 2 }}
           onClick={handleNav}
         >
-          <MenuIcon />
+          <MenuIcon  />
         </IconButton>
         <Menu
               id="menu-appbar"
@@ -87,7 +87,7 @@ const NavBar = ({setUser}) => {
             >
               
               <MenuItem to="activities" component= { Link }>All Activities</MenuItem>
-              <MenuItem onClick={handleNavClose}>Create New Activity</MenuItem>
+              <MenuItem to="createActivity" component= { Link }>Create New Activity</MenuItem>
               
             </Menu>
         </div>
