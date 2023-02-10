@@ -9,9 +9,13 @@ class ActivitiesController < ApplicationController
         render json: activity, status: :created
     end
 
+    # def update
+    #     activity = Activity.find_by(id: params[:id])
+    # end
+
     private
 
     def activity_params
-        params.permit(:title, :description, :date, :time)
+        params.permit(:title, :description, :location, :date, :time)
     end
 end
