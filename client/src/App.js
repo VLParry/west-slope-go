@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Home from "./components/Home";
+// import SignUpForm from "./components/SignUpForm";
 import Login from "./pages/Login"
 import NavBar from "./components/NavBar";
 import Activities from "./components/Activities";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css';
+import CreateActivity from "./components/CreateActivity";
 
 
 function App() {
@@ -20,6 +22,7 @@ function App() {
     }
   });
 },[]);
+// //empty dependency array only loads on the first time
 
 if (!user) return <Login onLogin={setUser} />
 
@@ -28,11 +31,15 @@ if (!user) return <Login onLogin={setUser} />
     <div className="App">
      
       <Router>
-      <NavBar setUser={setUser}/>
+      <NavBar 
+      setUser={setUser} user={user}
+      />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/activities" element={<Activities />} />
-          <Route path="/" element={<Home />} />
+          {/* <Route path="login" element={<Login />} />
+          <Route path="signup" element={<SignUpForm />}/> */}
+          <Route path="/activities" element={<Activities user={user} />} />
+          <Route path="/createActivity" element={<CreateActivity  />} />
         </Routes>
       </Router>
     </div>

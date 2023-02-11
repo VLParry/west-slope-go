@@ -4,12 +4,12 @@
   min-height: 100vh;
 
   justify-content: center;
-  background-image: linear-gradient(79deg, green, white, green);
+  background-image: linear-gradient(79deg, green, #9aed7e, green);
   flex-direction: column;
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
-.auth-form-container, .login-form, .signup-form {
+.auth-form-container, .login-form, .signup-form, .create_form, .activity_form_container {
   display: flex;
   flex-direction: column;
     align-items: center;
@@ -23,7 +23,7 @@ label {
 
 input {
   border-radius: 15px;
-  border: none;
+  border:hwb(153 1% 52%);
   
 }
 

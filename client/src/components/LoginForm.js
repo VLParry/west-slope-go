@@ -7,22 +7,22 @@ const LoginForm = ({onLogin}) => {
     // const [errors, setErrors] = useState([])
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(email) 
-        fetch("/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json",},
-          body: JSON.stringify({ email, password}),
-        })
-        .then((r) => {
-          if (r.ok) {
-            r.json().then((user) => onLogin(user));
-          }
-          // else{
-          //   r.json().then((err) => setErrors(err.errors));
-          // }
-        })
-    }
+      e.preventDefault();
+      console.log(email) 
+      fetch("/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json",},
+        body: JSON.stringify({ email, password}),
+      })
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((user) => onLogin(user));
+        }
+        // else{
+        //   r.json().then((err) => setErrors(err.errors));
+        // }
+      })
+  }
 
   return (
     <div className='auth-form-container'>
@@ -46,11 +46,11 @@ const LoginForm = ({onLogin}) => {
         onChange={(e) => setPassword(e.target.value)}
         />
         <button className='btn'>Sign In!</button>
-        {/* <FormField>
-          {errors.map((err) => (
-            <Error key={err}>{err}</Error>
-          ))}
-        </FormField> */}
+      
+          {/* {errors.map((err) => (
+            <p key={err} style={{ color: "red" }}>{err}</p>
+          ))} */}
+         
         </form>
    
         </div>

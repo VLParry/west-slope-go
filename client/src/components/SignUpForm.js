@@ -1,10 +1,16 @@
 import React, { useState } from 'react'
+// import {  useNavigate } from 'react-router-dom';
+
 
 const SignUpForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation]= useState("");
     const [name, setName] = useState("")
+    const [errors, setErrors] = useState([])
+
+    // const navigate = useNavigate()
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,6 +26,13 @@ const SignUpForm = () => {
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify(user)
         })
+        // .then(() => navigate('/login'))
+        // .then((r) => r.json())
+        //     .then((data) => {
+        //         if(data.errors) {
+        //            setErrors(data.errors)
+        //         } 
+        //
     }
     return (
         <div className='auth-form-container'>
