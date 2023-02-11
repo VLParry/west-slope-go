@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     #     render json: user, status: :created 
     # end
 
+    #show is so we can stay logged in on the front end as  we continue to make requests and can refresh and still be in logged
     def show
         render json: @current_user
     end
