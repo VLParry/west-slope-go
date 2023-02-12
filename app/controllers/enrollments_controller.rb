@@ -10,7 +10,9 @@ class EnrollmentsController < ApplicationController
 #allow only user logged in to delete their own enrollments 
     def destroy
         enrollment = Enrollment.find(params[:id])
+        if session[:user_id] === enrollment[:user_id]
         enrollment.destroy
+        head :no_content
     end
 
     private
