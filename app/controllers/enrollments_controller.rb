@@ -1,8 +1,16 @@
 class EnrollmentsController < ApplicationController
-
+    skip_before_action :authorized
+#allow user to click on an activitiy to enroll in it 
     def create 
-        enrollment = Enrollment.create!(enrollment_params)
-        render json: enrollment.activity, status: :created
+        enrollment = @current_user.enrollment.create!(enrollment_params)
+        render json: enrollment, status: :created
+    end
+
+   
+#allow only user logged in to delete their own enrollments 
+    def destroy
+        enrollment = Enrollment.find(params[:id])
+        enrollment.destroy
     end
 
     private
