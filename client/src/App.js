@@ -7,6 +7,7 @@ import Activities from "./components/Activities";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css';
 import CreateActivity from "./components/CreateActivity";
+import UserActivities from "./components/UserActivities";
 
 
 function App() {
@@ -40,6 +41,7 @@ if (!user) return <Login onLogin={setUser} />
           <Route path="signup" element={<SignUpForm />}/> */}
           <Route path="/activities" element={<Activities user={user} />} />
           <Route path="/createActivity" element={<CreateActivity  />} />
+          <Route path="/myActivities" element={<UserActivities />} />
         </Routes>
       </Router>
     </div>

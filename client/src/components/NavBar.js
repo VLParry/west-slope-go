@@ -121,8 +121,8 @@ const NavBar = ({setUser}) => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>My Activities</MenuItem>
-              
+              <MenuItem to="UserActivities" component= {Link}>My Activities</MenuItem>
+
             </Menu>
           </div>
         )}
