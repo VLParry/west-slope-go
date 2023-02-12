@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::API
   include ActionController::Cookies
+  
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  
   before_action :authorized
   #before action runs authorized method  before any action runs
   #authorized method checks our sessions and if our users ID is in the session they are authorized, if not theyll get the error. Unless is like an if.
@@ -14,6 +17,10 @@ class ApplicationController < ActionController::API
   
   def render_unprocessable_entity_response(exception)
     render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity 
-   end
+  end
+
+  def not_found
+    render json: {error: "Cannot find what you're looking for!"}, status: unauthorized
+  end
 
 end
