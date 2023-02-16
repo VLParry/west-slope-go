@@ -13,6 +13,8 @@ import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 
+//how can I have user's name show up where the user icon currently is?
+
 const NavBar = ({setUser}) => {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -121,7 +123,7 @@ const NavBar = ({setUser}) => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem to="UserActivities" component= {Link}>My Activities</MenuItem>
+              <MenuItem to="myActivities" component= {Link}>My Activities</MenuItem>
 
             </Menu>
           </div>
