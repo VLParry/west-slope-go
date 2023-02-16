@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 const LoginForm = ({onLogin}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    // const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState([])
 
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -18,9 +18,9 @@ const LoginForm = ({onLogin}) => {
         if (r.ok) {
           r.json().then((user) => onLogin(user));
         }
-        // else{
-        //   r.json().then((err) => setErrors(err.errors));
-        // }
+        else{
+          r.json().then((err) => setErrors(err.errors));
+        }
       })
   }
 
@@ -47,9 +47,9 @@ const LoginForm = ({onLogin}) => {
         />
         <button className='btn'>Sign In!</button>
       
-          {/* {errors.map((err) => (
+          {errors.map((err) => (
             <p key={err} style={{ color: "red" }}>{err}</p>
-          ))} */}
+          ))}
          
         </form>
    
