@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import ActivityCard from './ActivityCard'
 import Grid from '@mui/material/Grid';
-import CreateActivity from './CreateActivity';
-import { useLocation } from 'react-router-dom';
 
 
+//I want user to be able to click a button to 'enroll' in that activity then navigate to their page of activities. 
+//User can only edit/delete activities created by them.
 
-const Activities = ( {user} ) => {
-  const [activities, setActivities] = useState([]);
-const location = useLocation()
+const Activities = ( {user, activities, setActivities} ) => {
+  
 
   useEffect(() => {
     fetch("/activities")
@@ -16,10 +15,7 @@ const location = useLocation()
       .then(setActivities);
   }, []);
 
-  const handleAddActivity = (newActivity) => {
-    setActivities([...activities, newActivity])
 
-  }
 
   // const handleEditActivity = () => {
     
@@ -28,6 +24,10 @@ const location = useLocation()
   // const handleDeleteActivity = () => {
     
   // }
+
+  // const addEnrollment 
+
+  //const deleteEnrollment 
 
 
   return (
@@ -49,9 +49,7 @@ const location = useLocation()
         })}
       </Grid>
 
-    {location.pathname !== '/activities' && <CreateActivity 
-      handleAddActivity={handleAddActivity}
-    />}
+  
 
     </div>
   )

@@ -1,25 +1,34 @@
 import React, { useState } from 'react'
 
-const CreateActivity = ( {handleAddActivity} ) => {
-    const [newActivity, setNewActivity] = useState({
-       title: "",
-       description: "",
-       location: "",
-       date: "",
-       time: "", 
-    })
+//Can't get create activity to work.
+//After creating activity I'd like it to take the user to their activities page 
 
-    const handleActivityChange = (e) => {
-        const { name, value } = e.target
-        setNewActivity((previousData) => ({
-          ...previousData,
-          [name] : value,
-        }));
+const CreateActivity = ( {user, handleAddActivity} ) => {
+  const [title, setTitle] = useState("")
+  const [description, setDescription] = useState("")
+  const [location, setLocation] = useState("")
+  const [date, setDate] = useState("")
+  const [time, setTime] = useState("")
 
-    }
+
+    // const handleActivityChange = (e) => {
+    //     const { name, value } = e.target
+    //     setNewActivity((previousData) => ({
+    //       ...previousData,
+    //       [name] : value,
+    //     }));
+
+    // }
 
     const handleSubmitActivity= (e) => {
-        e.PreventDefault();
+        e.preventDefault();
+        const newActivity = {
+          title,
+          description,
+          location,
+          date,
+          time
+        }
         fetch("/activities", {
             method: "POST",
             headers: {
@@ -27,8 +36,19 @@ const CreateActivity = ( {handleAddActivity} ) => {
             },
             body: JSON.stringify(newActivity)
         })
-        console.log(newActivity)
+        .then((r) => r.json())
+        .then((addedActivity) =>{
+          handleAddActivity(addedActivity);
+          // setNewActivity({
+          //   title: "",
+          //   description: "",
+          //   location: "",
+          //   date: "",
+          //   time: "", 
+          // })
+        })
     }
+
 
   return (
     <div className='activity_form_container'>
@@ -40,8 +60,8 @@ const CreateActivity = ( {handleAddActivity} ) => {
   type="text"
   style={{width: '500px'}}
   name="title"
-  value={newActivity.title}
-  onChange={handleActivityChange}
+  value={title}
+  onChange={(e) => setTitle(e.target.value)}
   />
 </label>
 </p>
@@ -52,8 +72,8 @@ const CreateActivity = ( {handleAddActivity} ) => {
   type="text"
   style={{width: '500px'}}
   name="description"
-value={newActivity.description}
-onChange={handleActivityChange}
+value={description}
+onChange={(e) => setDescription(e.target.value)}
   />
 </label>
 </p>
@@ -64,8 +84,8 @@ onChange={handleActivityChange}
   type="text"
   style={{width: '500px'}}
   name="location"
-  value={newActivity.location}
-  onChange={handleActivityChange}
+  value={location}
+  onChange={(e) => setLocation(e.target.value)}
   />
 </label>
 </p>
@@ -73,11 +93,11 @@ onChange={handleActivityChange}
 <label>
    Date:
   <input 
-  type="text"
+  type="date"
   style={{width: '500px'}}
   name="date"
-  value={newActivity.date}
-  onChange={handleActivityChange}
+  value={date}
+  onChange={(e) => setDate(e.target.value)}
   />
 </label>
 </p>
@@ -85,15 +105,15 @@ onChange={handleActivityChange}
 <label>
    Time:
   <input 
-  type="text"
+  type="time"
   style={{width: '500px'}}
   name="time"
-  value={newActivity.time}
-  onChange={handleActivityChange}
+  value={time}
+  onChange={(e) => setTime(e.target.value)}
   />
 </label>
 </p>
-<button className='btn' >Create Activity</button>
+<button className='btn' type='submit' >Create Activity</button>
 </form>
     </div>
   )
