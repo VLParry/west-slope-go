@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import ActivityCard from './ActivityCard'
-import Grid from '@mui/material/Grid';
 
 
 //I want user to be able to click a button to 'enroll' in that activity then navigate to their page of activities. 
@@ -17,13 +16,14 @@ const Activities = ( {user, activities, setActivities} ) => {
 
 
 
-  // const handleEditActivity = () => {
+  const handleEditActivity = () => {
     
-  // }
+  }
 
-  // const handleDeleteActivity = () => {
-    
-  // }
+  const handleDeleteActivity = (id) => {
+    const updatedActivities = activities.filter((deletedActivity) => deletedActivity.id !== id)
+    setActivities(updatedActivities)
+  }
 
   // const addEnrollment 
 
@@ -32,12 +32,7 @@ const Activities = ( {user, activities, setActivities} ) => {
 
   return (
     <div>
-     <Grid container spacing={2} 
-      style={{
-        color: 'darkgreen', 
-        fontFamily: 'Helvetica-Bold', 
-        fontSize: "25px",
-        }}>
+    
         {activities?.map(activity => {
             return <ActivityCard key={activity.id}
             title={activity.title}
@@ -45,9 +40,11 @@ const Activities = ( {user, activities, setActivities} ) => {
             location={activity.location}
             date={activity.date}
             time={activity.time}
+            activityId={activity.id}
+            handleDeleteActivity={handleDeleteActivity}
             />
         })}
-      </Grid>
+      
 
   
 

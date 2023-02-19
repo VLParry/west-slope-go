@@ -1,31 +1,18 @@
 class ActivitiesController < ApplicationController
-    skip_before_action :authorized
-    
+    # skip_before_action :authorized
+
     def index 
         render json: Activity.all.order(date: :desc)
     end
 
     #if user is logged in they will be able to create an activity
     def create  
-        byebug
         # activity = Activity.create!(activity_params)
-        activity = @current_user.activites.create!(activity_params)
+        activity = @current_user.activities.create!(activity_params)
         render json: activity, status: :created
     end
 
-    # def user_activities
-    #     @activities = current_user.activites
-    #     render json: @activities
-    # end
 
-    def user_activities
-        if params[:my_activities]
-            @activities = current_user.enrollments.map(&:activity)
-        else
-
-        end
-        render json: activities
-    end
 
     def destroy
         activity = Activity.find(params[:id])
