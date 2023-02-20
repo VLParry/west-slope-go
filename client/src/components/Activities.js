@@ -5,7 +5,7 @@ import ActivityCard from './ActivityCard'
 //I want user to be able to click a button to 'enroll' in that activity then navigate to their page of activities. 
 //User can only edit/delete activities created by them.
 
-const Activities = ( {user, activities, setActivities} ) => {
+const Activities = ( { activities, setActivities } ) => {
   
 
   useEffect(() => {
@@ -16,7 +16,11 @@ const Activities = ( {user, activities, setActivities} ) => {
 
 
 
-  const handleEditActivity = () => {
+  const handleEditActivity = (updatedActivity) => {
+    const updatedActivities = activities.map((activity) =>
+    activity.id === updatedActivity.id ? updatedActivity : activity
+    );
+    setActivities(updatedActivities)
     
   }
 
@@ -25,7 +29,7 @@ const Activities = ( {user, activities, setActivities} ) => {
     setActivities(updatedActivities)
   }
 
-  // const addEnrollment 
+  // const addEnrollment = 
 
   //const deleteEnrollment 
 
@@ -42,6 +46,8 @@ const Activities = ( {user, activities, setActivities} ) => {
             time={activity.time}
             activityId={activity.id}
             handleDeleteActivity={handleDeleteActivity}
+            handleEditActivity={handleEditActivity}
+           
             />
         })}
       
