@@ -8,12 +8,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css';
 import CreateActivity from "./components/CreateActivity";
 import UserActivities from "./components/UserActivities";
+import { useUserContext } from "./context/UserContext";
 
 
 //its a better user experience that it will navigate you to the route you selected after you log in
 
 function App() {
-  const [user, setUser] = useState(null)
+  const {setUser, user} = useUserContext()
   //autoLogin : ensures our user ID is saved to sessions.
   const [activities, setActivities] = useState([]);
 
@@ -38,15 +39,13 @@ const handleAddActivity = (newActivity) => {
     <div className="App">
      
       <Router>
-      <NavBar 
-      setUser={setUser} user={user}
-      />
+      <NavBar />
       <div className="App__main">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/activities" element={<Activities user={user} activities={activities} setActivities={setActivities} />} />
-          <Route path="/createActivity" element={<CreateActivity user={user} handleAddActivity={handleAddActivity}/>} />
-          <Route path="/myActivities" element={<UserActivities />} />
+          <Route path="/activities" element={<Activities activities={activities} setActivities={setActivities} />} />
+          <Route path="/createActivity" element={<CreateActivity  handleAddActivity={handleAddActivity}/>} />
+          <Route path="/myActivities" element={<UserActivities  />} />
         </Routes>
         </div>
       </Router>
