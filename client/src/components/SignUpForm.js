@@ -7,7 +7,7 @@ const SignUpForm = () => {
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation]= useState("");
     const [name, setName] = useState("")
-    // const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState([])
 
     
 

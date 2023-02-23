@@ -8,7 +8,7 @@ const LoginForm = ({onLogin}) => {
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      console.log(email) 
+      console.log(e) 
       fetch("/login", {
         method: "POST",
         headers: { "Content-Type": "application/json",},
