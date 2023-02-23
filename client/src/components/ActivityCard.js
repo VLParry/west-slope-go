@@ -15,7 +15,7 @@ import { useUserContext } from '../context/UserContext';
 
 
 
-const ActivityCard = ({title, description, time, date,location, activityId, handleDeleteActivity, handleEditActivity}) => {
+const ActivityCard = ({title, description, time, date,location, activityId, handleDeleteActivity, handleEditActivity, addEnrollment}) => {
   const {user} = useUserContext()
   const [isEditing, setIsEditing] = useState(false)
   const [activityTitle, setActivityTitle] = useState(title)
@@ -36,10 +36,13 @@ const ActivityCard = ({title, description, time, date,location, activityId, hand
 
   function enrollInActivityClick(e) {
     e.preventDefault();
+    console.log(e)
     const data = {
       activity_id: activityId,
       user_id: user.id,
     }
+    console.log(user.id)
+    console.log(activityId)
     fetch("/enrollments", {
       method: "POST",
       headers: {
@@ -47,6 +50,10 @@ const ActivityCard = ({title, description, time, date,location, activityId, hand
       },
       body: JSON.stringify(data)
 
+    })
+    .then((addedEnrollment) => {
+      addEnrollment(addedEnrollment)
+      console.log(addedEnrollment)
     })
   }
 
@@ -60,13 +67,14 @@ function editActivity(e) {
     time: activityTime,
     id: activityId
   }
-  fetch('/activities',
+  fetch(`/activities/${activityId}`,
   {method: 'PATCH',
   headers: {
     "Content-Type": "application/json",
 }, body: JSON.stringify(newActivity)}
 
-  ).then(() => {
+  ).then((r) => r.json())
+  .then(() => {
     handleEditActivity(newActivity); 
     setIsEditing(false)})
    

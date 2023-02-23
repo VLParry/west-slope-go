@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ActivityCard from './ActivityCard'
 
 
@@ -6,7 +6,7 @@ import ActivityCard from './ActivityCard'
 //User can only edit/delete activities created by them.
 
 const Activities = ( { activities, setActivities } ) => {
-  
+  const [enrollments, setEnrollments] = useState('')
 
   useEffect(() => {
     fetch("/activities")
@@ -28,8 +28,14 @@ const Activities = ( { activities, setActivities } ) => {
     const updatedActivities = activities.filter((deletedActivity) => deletedActivity.id !== id)
     setActivities(updatedActivities)
   }
-
-  // const addEnrollment = 
+  // const handleAddActivity = (newActivity) => {
+  //   setActivities([...activities, newActivity])
+  
+  // }
+  const addEnrollment = (newEnrollment) => {
+      setEnrollments(...enrollments, newEnrollment)
+      console.log(newEnrollment)
+  }
 
   //const deleteEnrollment 
 
@@ -47,7 +53,8 @@ const Activities = ( { activities, setActivities } ) => {
             activityId={activity.id}
             handleDeleteActivity={handleDeleteActivity}
             handleEditActivity={handleEditActivity}
-           
+            addEnrollment={addEnrollment}
+            setEnrollments={setEnrollments}
             />
         })}
       

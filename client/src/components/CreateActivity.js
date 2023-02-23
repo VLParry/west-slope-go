@@ -3,22 +3,12 @@ import React, { useState } from 'react'
 //Can't get create activity to work.
 //After creating activity I'd like it to take the user to their activities page 
 
-const CreateActivity = ( {user, handleAddActivity} ) => {
+const CreateActivity = ( { handleAddActivity} ) => {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [location, setLocation] = useState("")
   const [date, setDate] = useState("")
   const [time, setTime] = useState("")
-
-
-    // const handleActivityChange = (e) => {
-    //     const { name, value } = e.target
-    //     setNewActivity((previousData) => ({
-    //       ...previousData,
-    //       [name] : value,
-    //     }));
-
-    // }
 
     const handleSubmitActivity= (e) => {
         e.preventDefault();

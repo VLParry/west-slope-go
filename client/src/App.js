@@ -33,7 +33,7 @@ if (!user) return <Login onLogin={setUser} />
 
 const handleAddActivity = (newActivity) => {
   setActivities([...activities, newActivity])
-
+console.log(newActivity)
 }
   return (
     <div className="App">
