@@ -12,13 +12,15 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import { useUserContext } from '../context/UserContext';
 
 //how can I have user's name show up where the user icon currently is?
 
-const NavBar = ({setUser}) => {
+const NavBar = () => {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [menuEl, setMenuEl] = React.useState(null);
+  const {user, setUser} = useUserContext()
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -98,6 +100,7 @@ const NavBar = ({setUser}) => {
         </Typography>
         {auth && (
           <div>
+            <span>Hi, {user.name}!</span>
             <IconButton
               size="large"
               aria-label="account of current user"
