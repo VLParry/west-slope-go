@@ -11,6 +11,8 @@ import dayjs from 'dayjs';
 import { grid } from '@mui/system';
 // import <localized-format> from 'dayjs/plugin/<localized-format>';
 import { useUserContext } from '../context/UserContext';
+import { useHistory } from "react-router-dom";
+
 
 
 
@@ -25,7 +27,7 @@ const ActivityCard = ({title, description, time, date,location, activityId, hand
   const [activityLocation, setActivityLocation] = useState(location)
 
   dayjs().format() 
-
+// const history = useHistory()
 
   function deleteActivityClick(){
     fetch(`/activities/${activityId}`, {
@@ -97,7 +99,7 @@ function editActivity(e) {
           {description}
         </Typography>
         <Typography variant="body1">
-          {location}
+          Location: {location}
           
         </Typography>
         
@@ -146,44 +148,8 @@ function editActivity(e) {
           </form></CardContent><CardActions><Button onClick={editActivity}>save changes</Button></CardActions></>}
     </Card>
     </div>
-//       <React.Fragment>
-//         <CardContent>
-//           <Typography sx={{ fontSize: 20, color: blue }} color="text.secondary" gutterBottom>
-//           {date}{time}
-//           </Typography>
-//           <Typography variant="h7" component="div">
-// {title}            
-//           </Typography>
-//           <Typography sx={{ mb: 1.5 }} color="text.secondary">
-//             {location}
-//           </Typography>
-//           <Typography variant="body2">
-//            {description}
-//           </Typography>
-//         </CardContent>
-//         <CardActions>
-//           <Button size="small">I'm In!</Button>
-//         </CardActions>
-//       </React.Fragment>
-//     );
-    
-
-  // <Box sx={{ minWidth: 275 }}>
-  //     <Card variant="outlined">{card}</Card>
-  //   </Box>
   )
 }
-//   ( <Grid item xs={4}>
-//     <ul>
-//   <h3>{title}</h3>
-//   <>{description}</>
-//   <>{location}</>
-//   <>{time}</>
-//   <>{date}</>
-//   </ul>
-//   {/* <img src={image} style={{width:"100px",display:"block"}} /> */}
-  
-//  </Grid>
-// )}
+
 
 export default ActivityCard
