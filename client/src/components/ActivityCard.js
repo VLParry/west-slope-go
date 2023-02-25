@@ -8,10 +8,10 @@ import Typography from '@mui/material/Typography';
 // import { blue } from '@mui/material/colors';
 // import { DeleteOutlined } from '@mui/icons-material'
 import dayjs from 'dayjs';
-import { grid } from '@mui/system';
+// import { grid } from '@mui/system';
 // import <localized-format> from 'dayjs/plugin/<localized-format>';
 import { useUserContext } from '../context/UserContext';
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -25,9 +25,11 @@ const ActivityCard = ({title, description, time, date,location, activityId, hand
   const [activityTime, setActivityTime] = useState(time)
   const [activityDate, setActivityDate] = useState(date)
   const [activityLocation, setActivityLocation] = useState(location)
+  const [errors, setErrors] = useState([])
+  const navigate = useNavigate([])
 
   dayjs().format() 
-// const history = useHistory()
+
 
   function deleteActivityClick(){
     fetch(`/activities/${activityId}`, {
@@ -53,9 +55,16 @@ const ActivityCard = ({title, description, time, date,location, activityId, hand
       body: JSON.stringify(data)
 
     })
-    .then((addedEnrollment) => {
-      addEnrollment(addedEnrollment)
-      console.log(addedEnrollment)
+    .then((r) => {
+      if (r.ok) {
+        r.json().then((addedEnrollment) => {
+          addEnrollment(addedEnrollment)
+        navigate('/myActivities')
+        });
+      }
+      else{
+        r.json().then((err) => setErrors(err.errors));
+      }
     })
   }
 
@@ -75,10 +84,22 @@ function editActivity(e) {
     "Content-Type": "application/json",
 }, body: JSON.stringify(newActivity)}
 
-  ).then((r) => r.json())
-  .then(() => {
-    handleEditActivity(newActivity); 
-    setIsEditing(false)})
+  )
+  .then((r) => {
+    if (r.ok) {
+      r.json().then((newActivity) => {
+        handleEditActivity(newActivity)
+        setIsEditing(false)
+      });
+    }
+    else{
+      r.json().then((err) => setErrors(err.errors));
+    }
+  })
+  // .then((r) => r.json())
+  // .then(() => {
+  //   handleEditActivity(newActivity); 
+  //   setIsEditing(false)})
    
 }
 
@@ -146,6 +167,9 @@ function editActivity(e) {
           
           
           </form></CardContent><CardActions><Button onClick={editActivity}>save changes</Button></CardActions></>}
+          {errors.map((err) => (
+            <p key={err} style={{ color: "red" }}>{err}</p>
+          ))}
     </Card>
     </div>
   )
