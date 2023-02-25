@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
+
 
 //Can't get create activity to work.
 //After creating activity I'd like it to take the user to their activities page 
@@ -9,6 +11,8 @@ const CreateActivity = ( { handleAddActivity} ) => {
   const [location, setLocation] = useState("")
   const [date, setDate] = useState("")
   const [time, setTime] = useState("")
+  const [errors, setErrors] = useState([])
+  const navigate = useNavigate()
 
     const handleSubmitActivity= (e) => {
         e.preventDefault();
@@ -26,16 +30,16 @@ const CreateActivity = ( { handleAddActivity} ) => {
             },
             body: JSON.stringify(newActivity)
         })
-        .then((r) => r.json())
-        .then((addedActivity) =>{
-          handleAddActivity(addedActivity);
-          // setNewActivity({
-          //   title: "",
-          //   description: "",
-          //   location: "",
-          //   date: "",
-          //   time: "", 
-          // })
+        .then((r) => {
+          if (r.ok) {
+            r.json().then((addedActivity) => {
+              handleAddActivity(addedActivity)
+            navigate('/activities')
+            });
+          }
+          else{
+            r.json().then((err) => setErrors(err.errors));
+          }
         })
     }
 
@@ -104,6 +108,9 @@ onChange={(e) => setDescription(e.target.value)}
 </label>
 </p>
 <button className='btn' type='submit' >Create Activity</button>
+{errors.map((err) => (
+            <p key={err} style={{ color: "red" }}>{err}</p>
+          ))}
 </form>
     </div>
   )
