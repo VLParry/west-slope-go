@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
+
 
 
 
@@ -8,6 +10,7 @@ const SignUpForm = () => {
     const [passwordConfirmation, setPasswordConfirmation]= useState("");
     const [name, setName] = useState("")
     const [errors, setErrors] = useState([])
+    const nav = useNavigate()
 
     
 
@@ -26,13 +29,15 @@ const SignUpForm = () => {
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify(user)
         })
-        // .then(() => navigate('/login'))
-        // .then((r) => r.json())
-        //     .then((data) => {
-        //         if(data.errors) {
-        //            setErrors(data.errors)
-        //         } 
-        //
+        .then((r) => {
+            if (r.ok) {
+              nav('/')
+            }
+            else{
+              r.json().then((err) => setErrors(err.errors));
+            }
+          })
+        
     }
     return (
         <div className='auth-form-container'>
@@ -74,6 +79,9 @@ const SignUpForm = () => {
         onChange={(e) => setName(e.target.value)}
         />
         <button className='btn' >Create Account</button>
+        {errors.map((err) => (
+            <p key={err} style={{ color: "red" }}>{err}</p>
+          ))}
     </form>
  
     </div>
