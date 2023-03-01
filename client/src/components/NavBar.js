@@ -61,7 +61,7 @@ const NavBar = () => {
         label={auth ? 'Logout' : 'Login'}
       />
     </FormGroup>
-    <AppBar sx={{ bgcolor: "green" }} position="static">
+    <AppBar sx={{ bgcolor: "#654c4f" }} position="static">
       <Toolbar>
         <div>
         <IconButton

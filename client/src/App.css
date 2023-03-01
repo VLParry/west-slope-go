@@ -4,14 +4,14 @@
   min-height: 100vh;
 
   justify-content: center;
-  background-image: linear-gradient(79deg, green, #9aed7e, green);
+  background-image: linear-gradient(79deg, #8eb897, #e9e3b4, #8eb897);
   flex-direction: column;
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
-/* .App__main {
+.App__main {
   flex-grow: 1;
-} */
+}
 
 .auth-form-container, .login-form, .signup-form, .create_form, .activity_form_container {
   display: flex;

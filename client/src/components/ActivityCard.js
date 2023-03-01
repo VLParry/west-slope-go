@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 // import { DeleteOutlined } from '@mui/icons-material'
 import dayjs from 'dayjs';
 // import { grid } from '@mui/system';
-// import <localized-format> from 'dayjs/plugin/<localized-format>';
+
 import { useUserContext } from '../context/UserContext';
 import { useNavigate } from "react-router-dom";
 
@@ -28,7 +28,8 @@ const ActivityCard = ({title, description, time, date,location, activityId, hand
   const [errors, setErrors] = useState([])
   const navigate = useNavigate([])
 
-  dayjs().format() 
+ const formattedDate = dayjs(date).format('MMMM D, YYYY') 
+ const formattedTime = dayjs(time, 'HH:mm').format('h:mm A')
 
 
   function deleteActivityClick(){
@@ -105,18 +106,18 @@ function editActivity(e) {
 
 
   return (
-    <div style={ {margin: '10%'}}>
+    <div style={ {margin: '5%'}}>
     <Card sx={{ maxWidth: 400 }} variant='elevation'>
     {!isEditing && <>
-      <CardContent>
+      <CardContent style={{ background: 'linear-gradient(to bottom, #f39b6d, #ffffbd )' }}>
         
-        <Typography variant='h3'  gutterBottom>
+        <Typography variant='h4'  gutterBottom>
           {title}
         </Typography>
-        <Typography variant="h5" component="div">
-         {date}{time}
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="green">
+        <Typography variant="body" component="div">
+         {formattedDate} at {formattedTime}
+        </Typography><br />
+        <Typography sx={{ mb: 1.5 }} >
           {description}
         </Typography>
         <Typography variant="body1">
