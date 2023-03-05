@@ -16,6 +16,7 @@ const LoginForm = ({onLogin}) => {
       })
       .then((r) => {
         if (r.ok) {
+          setErrors([])
           r.json().then((user) => onLogin(user));
         }
         else{

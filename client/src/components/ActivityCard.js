@@ -88,6 +88,8 @@ function editActivity(e) {
   )
   .then((r) => {
     if (r.ok) {
+      setErrors([])
+
       r.json().then((newActivity) => {
         handleEditActivity(newActivity)
         setIsEditing(false)

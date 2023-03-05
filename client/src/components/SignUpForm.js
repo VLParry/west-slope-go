@@ -30,6 +30,8 @@ const SignUpForm = () => {
             body:JSON.stringify(user)
         })
         .then((r) => {
+          setErrors([])
+
             if (r.ok) {
               // nav('/')
             }

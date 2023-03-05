@@ -32,6 +32,7 @@ const CreateActivity = ( { handleAddActivity} ) => {
         })
         .then((r) => {
           if (r.ok) {
+            setErrors([])
             r.json().then((addedActivity) => {
               handleAddActivity(addedActivity)
             navigate('/activities')
