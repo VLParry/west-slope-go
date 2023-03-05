@@ -28,16 +28,13 @@ const Activities = ( { activities, setActivities } ) => {
     const updatedActivities = activities.filter((deletedActivity) => deletedActivity.id !== id)
     setActivities(updatedActivities)
   }
-  // const handleAddActivity = (newActivity) => {
-  //   setActivities([...activities, newActivity])
-  
-  // }
+
   const addEnrollment = (newEnrollment) => {
       setEnrollments(...enrollments, newEnrollment)
-      console.log(newEnrollment)
+      console.log({newEnrollment})
   }
 
-  //const deleteEnrollment 
+
 
 
   return (

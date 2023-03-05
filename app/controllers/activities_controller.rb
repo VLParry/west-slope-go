@@ -5,6 +5,8 @@ class ActivitiesController < ApplicationController
 
     def index 
         render json: Activity.all.order(date: :desc)
+        # activities = Activity.all.order(date: :desc)
+        # render json: activities, each_serializer: ActivitySerializer
     end
 
     def show 

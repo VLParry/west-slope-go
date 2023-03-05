@@ -74,7 +74,7 @@ function editActivity(e) {
   const newActivity = {
     title: activityTitle,
     description: activityDescription,
-    location: activityDescription,
+    location: activityLocation,
     date: activityDate,
     time: activityTime,
     id: activityId

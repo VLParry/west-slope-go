@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 
 
@@ -10,7 +10,7 @@ const SignUpForm = () => {
     const [passwordConfirmation, setPasswordConfirmation]= useState("");
     const [name, setName] = useState("")
     const [errors, setErrors] = useState([])
-    const nav = useNavigate()
+    // const nav = useNavigate()
 
     
 
@@ -31,7 +31,7 @@ const SignUpForm = () => {
         })
         .then((r) => {
             if (r.ok) {
-              nav('/')
+              // nav('/')
             }
             else{
               r.json().then((err) => setErrors(err.errors));
