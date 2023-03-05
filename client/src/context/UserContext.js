@@ -5,17 +5,19 @@ import {createContext, useContext, useState } from 'react';
 const UserContext = createContext({
 
     user: {},
- setUser: () => {}
+ setUser: () => {},
+ userActivities: [],
+ setUserActivities: () => {}
    
    });
    //11-20 when you connect it is saying what the state will be
 export default function UserContextProvider ({children}) {
     const [user, setUser] = useState(null)
-
+const [userActivities, setUserActivities] = useState([])
     return (
 
         <UserContext.Provider
-value={{user, setUser, }}  >{children}</UserContext.Provider>
+value={{user, setUser, userActivities, setUserActivities }}  >{children}</UserContext.Provider>
     
       );
 }
