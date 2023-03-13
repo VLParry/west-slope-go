@@ -4,7 +4,7 @@ class ActivitiesController < ApplicationController
     ##why can I not create an activity when my skip before action is enabled 
 
     def index 
-        render json: Activity.all.order(date: :desc)
+        render json: Activity.all.order(date: :asc)
         # activities = Activity.all.order(date: :desc)
         # render json: activities, each_serializer: ActivitySerializer
     end
