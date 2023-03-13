@@ -1,26 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import EnrollmentCard from './EnrollmentCard'
 import { useUserContext } from '../context/UserContext'
 
-
+//need to go back and change any userActivites to user.activity
 const UserActivities = (  ) => {
- const {user, userActivities, setUserActivities} = useUserContext()
+ const {user, setUser} = useUserContext()
  //destructuring user object out of useUserContext 
-console.log({userActivities})
+
+// useEffect(() => {
+//   console.log({userActivities})
+// }, [userActivities])
+ 
 
  const  handleDeleteEnrollment
  = (id) => {
-  const updatedActivities = userActivities.filter((deletedActivity) => deletedActivity.id !== id)
-    setUserActivities(updatedActivities)
+  // const updatedActivities = userActivities.filter((deletedActivity) => deletedActivity.id !== id)
+  const updatedActivities = user.activities.filter((activity) => activity.enrollments.find((enrollment) => enrollment.id === id) === undefined);
+    setUser({...user, activities: updatedActivities})
  }
-
+//copying the user object and then only overriding the activities key
   
     return (
     <div>
     <h1>{user.name}'s Upcoming Activities</h1>
 
   
-   {userActivities.map((activity) => 
+   {user.activities.map((activity) => 
    <EnrollmentCard 
    key={activity.id} 
   //  {...activity} 

@@ -14,7 +14,7 @@ import { useUserContext } from "./context/UserContext";
 //its a better user experience that it will navigate you to the route you selected after you log in
 
 function App() {
-  const {setUser, user, setUserActivities} = useUserContext()
+  const {setUser, user} = useUserContext()
   //autoLogin : ensures our user ID is saved to sessions.
   const [activities, setActivities] = useState([]);
 
@@ -24,7 +24,7 @@ function App() {
     .then((r) => {
     if (r.ok) {
       r.json().then((user) => {setUser(user)
-      setUserActivities(user.activities)
+      
       });
     }
   });

@@ -1,23 +1,22 @@
 import {createContext, useContext, useState } from 'react';
 
-//Context has two parts: provider and consumer. Provider provides the info and the layer where info gets stored set and created and its always outside of the consumer of context. the consumer consumes the data in the context provider. two ways to access the info: use context.consumer or useContext hook. Contect will store and create the user. 
+//Context has two parts: provider and consumer. Provider provides the info and the layer where info gets stored set and created and its always outside of the consumer of context. the consumer consumes the data in the context provider. two ways to access the info: use context.consumer or useContext hook. Context will store and create the user. 
 //5-10 creates the base of the context
 const UserContext = createContext({
 
     user: {},
  setUser: () => {},
- userActivities: [],
- setUserActivities: () => {}
+ 
    
    });
    //11-20 when you connect it is saying what the state will be
 export default function UserContextProvider ({children}) {
-    const [user, setUser] = useState(null)
-const [userActivities, setUserActivities] = useState([])
+    const [user, setUser] = useState({activities: []})
     return (
 
-        <UserContext.Provider
-value={{user, setUser, userActivities, setUserActivities }}  >{children}</UserContext.Provider>
+        <UserContext.Provider value={{user, setUser }}>
+            {children}
+        </UserContext.Provider>
     
       );
 }
