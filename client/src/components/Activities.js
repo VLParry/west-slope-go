@@ -23,11 +23,11 @@ const Activities = ( { activities, setActivities } ) => {
     setActivities(updatedActivities)
     
   }
-
-  const handleDeleteActivity = (id) => {
-    const updatedActivities = activities.filter((deletedActivity) => deletedActivity.id !== id)
-    setActivities(updatedActivities)
-  }
+//STRETCH GOAL
+  // const handleDeleteActivity = (id) => {
+  //   const updatedActivities = activities.filter((deletedActivity) => deletedActivity.id !== id)
+  //   setActivities(updatedActivities)
+  // }
 
   const addEnrollment = (newEnrollment) => {
       setEnrollments(...enrollments, newEnrollment)
@@ -48,7 +48,7 @@ const Activities = ( { activities, setActivities } ) => {
             date={activity.date}
             time={activity.time}
             activityId={activity.id}
-            handleDeleteActivity={handleDeleteActivity}
+            // handleDeleteActivity={handleDeleteActivity}
             handleEditActivity={handleEditActivity}
             addEnrollment={addEnrollment}
             setEnrollments={setEnrollments}

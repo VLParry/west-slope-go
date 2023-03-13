@@ -31,13 +31,14 @@ const ActivityCard = ({title, description, time, date,location, activityId, hand
  const formattedDate = dayjs(date).format('MMMM D, YYYY') 
  const formattedTime = dayjs(time, 'HH:mm').format('h:mm A')
 
+//Was told I cannot have this for project requirments but am keeping it for stretch goals of having a more complicated activities model
 
-  function deleteActivityClick(){
-    fetch(`/activities/${activityId}`, {
-      method: 'DELETE'
-    })
-    handleDeleteActivity(activityId)
-}
+//   function deleteActivityClick(){
+//     fetch(`/activities/${activityId}`, {
+//       method: 'DELETE'
+//     })
+//     handleDeleteActivity(activityId)
+// }
 
   function enrollInActivityClick(e) {
     e.preventDefault();
@@ -121,7 +122,7 @@ function editActivity(e) {
       <CardActions>
 
         <Button onClick={enrollInActivityClick} size="large" variant='outlined' fullWidth={true}>Count me in!</Button>
-        <Button onClick={deleteActivityClick} size="small" color="warning">Delete Activity</Button>
+        {/* <Button onClick={deleteActivityClick} size="small" color="warning">Delete Activity</Button> */}
         <Button onClick={() => setIsEditing(true)}size="small" color="secondary">Edit Activity</Button>
       </CardActions>
       </>}
