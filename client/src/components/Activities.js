@@ -31,7 +31,7 @@ const Activities = ( { activities, setActivities } ) => {
 
   const addEnrollment = (newEnrollment) => {
       setEnrollments(...enrollments, newEnrollment)
-      console.log({newEnrollment})
+    
   }
 
 

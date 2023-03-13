@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const ActivityCard = ({title, description, time, date,location, activityId, handleDeleteActivity, handleEditActivity, addEnrollment}) => {
-  const {user} = useUserContext()
+  const {user, setUser} = useUserContext()
   const [isEditing, setIsEditing] = useState(false)
   const [activityTitle, setActivityTitle] = useState(title)
   const [activityDescription, setActivityDescription] = useState(description)
@@ -41,13 +41,10 @@ const ActivityCard = ({title, description, time, date,location, activityId, hand
 
   function enrollInActivityClick(e) {
     e.preventDefault();
-    console.log(e)
     const data = {
       activity_id: activityId,
       user_id: user.id,
     }
-    console.log(user.id)
-    console.log(activityId)
     fetch("/enrollments", {
       method: "POST",
       headers: {
@@ -60,6 +57,7 @@ const ActivityCard = ({title, description, time, date,location, activityId, hand
       if (r.ok) {
         r.json().then((addedEnrollment) => {
           addEnrollment(addedEnrollment)
+          setUser({...user, activities: [...user.activities, addedEnrollment]})
         navigate('/myActivities')
         });
       }
@@ -84,13 +82,11 @@ function editActivity(e) {
   headers: {
     "Content-Type": "application/json",
 }, body: JSON.stringify(newActivity)}
-
   )
   .then((r) => {
     if (r.ok) {
       setErrors([])
-
-      r.json().then((newActivity) => {
+       r.json().then((newActivity) => {
         handleEditActivity(newActivity)
         setIsEditing(false)
       });
@@ -99,11 +95,6 @@ function editActivity(e) {
       r.json().then((err) => setErrors(err.errors));
     }
   })
-  // .then((r) => r.json())
-  // .then(() => {
-  //   handleEditActivity(newActivity); 
-  //   setIsEditing(false)})
-   
 }
 
 
@@ -124,11 +115,9 @@ function editActivity(e) {
         </Typography>
         <Typography variant="body1">
           Location: {location}
-          
-        </Typography>
-        
-      
-      </CardContent>
+          </Typography>
+
+        </CardContent>
       <CardActions>
 
         <Button onClick={enrollInActivityClick} size="large" variant='outlined' fullWidth={true}>Count me in!</Button>
