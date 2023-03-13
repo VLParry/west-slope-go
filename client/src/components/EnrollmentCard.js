@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState} from 'react'
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -20,14 +20,22 @@ import dayjs from 'dayjs';
 const EnrollmentCard = ( {title, date, time,  enrollment_id, location, handleDeleteEnrollment }) => {
   const formattedDate = dayjs(date).format('MMMM D, YYYY') 
   const formattedTime = dayjs(time, 'HH:mm').format('h:mm A')
+  const [errors, setErrors] = useState([])
+
 
 console.log(enrollment_id)
     
   function deleteActivityClick(){
     fetch(`/enrollments/${enrollment_id}`, {
       method: 'DELETE'
+    }).then((r) =>{
+     if(r.ok) {
+      handleDeleteEnrollment(enrollment_id)
+    } else {
+      r.json().then((err) => setErrors(err.errors));
+    }
     })
-    handleDeleteEnrollment(enrollment_id)
+    
 }
 
   return (
@@ -51,6 +59,9 @@ console.log(enrollment_id)
       <CardActions>
         <Button onClick={deleteActivityClick}size="small">I can no longer attend</Button>
       </CardActions>
+      {errors.map((err) => (
+            <p key={err} style={{ color: "red" }}>{err}</p>
+          ))}
     </Card>
     </div>
   )
