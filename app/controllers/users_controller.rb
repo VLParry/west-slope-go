@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     end
 # Where do I put my action to show only the activites belonging to a specific user?
     def index  
-        render json: @current_user.activities
+        render json: @current_user
     end 
 
 
