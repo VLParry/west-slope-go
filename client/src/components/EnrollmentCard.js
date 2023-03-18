@@ -1,5 +1,4 @@
 import {useState} from 'react'
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -8,23 +7,13 @@ import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
 
 
-// const bull = (
-//   <Box
-//     component="span"
-//     sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-//   >
-//     •
-//   </Box>
-// );
-
-const EnrollmentCard = ( {title, date, time,  enrollment_id, location, handleDeleteEnrollment }) => {
+const EnrollmentCard = ( {title, date, time,  enrollment_id, location, handleDeleteEnrollment, howMany, handleEditAttendees, activity }) => {
   const formattedDate = dayjs(date).format('MMMM D, YYYY') 
   const formattedTime = dayjs(time, 'HH:mm').format('h:mm A')
   const [errors, setErrors] = useState([])
-
-
-console.log(enrollment_id)
-    
+  const [numberOfAttendees, setNumberOfAttendees] = useState(howMany)
+  const [editNumber, setEditNumber] = useState(false)
+ 
   function deleteActivityClick(){
     fetch(`/enrollments/${enrollment_id}`, {
       method: 'DELETE'
@@ -34,8 +23,25 @@ console.log(enrollment_id)
     } else {
       r.json().then((err) => setErrors(err.errors));
     }
+    })  
+}
+
+function handleSave() {
+  fetch(`/enrollments/${enrollment_id}`, {
+    method: 'PATCH',
+    headers: {
+          "Content-Type": "application/json",
+      }, 
+      body: JSON.stringify({ enrollment_id: enrollment_id, number_of_attendees: numberOfAttendees })
+    }) 
+      .then((r) =>{
+        if(r.ok) {
+          handleEditAttendees(enrollment_id, numberOfAttendees)
+          setEditNumber(false)
+      } else {
+         r.json().then((err) => setErrors(err.errors));
+      }
     })
-    
 }
 
   return (
@@ -53,10 +59,25 @@ console.log(enrollment_id)
         </Typography>
         <Typography variant="body1">
           {location}
-         
         </Typography>
+        <Typography variant="body1">
+          How many people you are bringing: {howMany}
+        </Typography>
+        {editNumber && <><input
+            autoFocus
+            margin="dense"
+            id="attendees"
+            label="How many people?"
+            type="number"
+            min={1}
+            fullWidth
+            value={numberOfAttendees}
+            variant="standard"
+            onChange={(e) => setNumberOfAttendees(e.target.value)}
+          /><Button onClick={handleSave}>Save</Button></>}
       </CardContent>
       <CardActions>
+      <Button onClick={() => setEditNumber(true)}size="small">Edit Attendees</Button>
         <Button onClick={deleteActivityClick}size="small">I can no longer attend</Button>
       </CardActions>
       {errors.map((err) => (
