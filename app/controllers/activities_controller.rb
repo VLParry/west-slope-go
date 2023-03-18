@@ -1,12 +1,9 @@
 class ActivitiesController < ApplicationController
     skip_before_action :authorized
 
-    ##why can I not create an activity when my skip before action is enabled 
 
     def index 
         render json: Activity.all.order(date: :asc)
-        # activities = Activity.all.order(date: :desc)
-        # render json: activities, each_serializer: ActivitySerializer
     end
 
     def show 
@@ -14,23 +11,22 @@ class ActivitiesController < ApplicationController
         render json: activity, status: 200 
     end
 
-    #if user is logged in they will be able to create an activity
     def create  
         activity = Activity.create!(activity_params)
         render json: activity, status: :created
     end
 
-#When logged in, user can update any activity. Bang! is for errors 
-def update
-    activity = find_activity
-    activity.update!(activity_params)
-    render json: activity, status: :ok
-end
-
-    def destroy
+#When logged in, user can edit any activity. Keeping this for my stretch goal although it isn't particularly how i'd like it. Bang! is for errors 
+    def update
         activity = find_activity
-        activity.destroy
+        activity.update!(activity_params)
+        render json: activity, status: :ok
     end
+#keeping this for my stretch goal 
+    # def destroy
+    #     activity = find_activity
+    #     activity.destroy
+    # end
 
 
     private

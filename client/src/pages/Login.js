@@ -18,9 +18,6 @@ const Login = ({onLogin}) => {
               Sign In
             </button>
           </p></>}
-        
-        
-      
     </div>
   )
 }

@@ -137,8 +137,6 @@ function editActivity(e) {
 
         </CardContent>
       <CardActions>
-
-        {/* <Button onClick={enrollInActivityClick} size="large" variant='outlined' fullWidth={true}>Count me in!</Button> */}
         <Button variant="outlined" onClick={handleClickOpen}>
         Count me in!
       </Button>
@@ -209,9 +207,9 @@ function editActivity(e) {
           
           
           </form></CardContent><CardActions><Button onClick={editActivity}>save changes</Button></CardActions></>}
-          {/* {errors.map((err) => (
+          {errors.map((err) => (
             <p key={err} style={{ color: "red" }}>{err}</p>
-          ))} */}
+          ))}
     </Card>
     </div>
   )

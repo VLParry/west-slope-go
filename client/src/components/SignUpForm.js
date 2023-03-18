@@ -1,7 +1,4 @@
 import React, { useState } from 'react'
-// import { useNavigate } from "react-router-dom";
-
-
 
 
 const SignUpForm = () => {
@@ -10,11 +7,8 @@ const SignUpForm = () => {
     const [passwordConfirmation, setPasswordConfirmation]= useState("");
     const [name, setName] = useState("")
     const [errors, setErrors] = useState([])
-    // const nav = useNavigate()
 
     
-
-
     const handleSubmit = (e) => {
         e.preventDefault();
         const user = {
@@ -23,7 +17,6 @@ const SignUpForm = () => {
             password_confirmation: passwordConfirmation,
             name
         }
-        console.log(user)
         fetch ('/signup', {
             method: "POST",
             headers:{'Content-Type':'application/json'},

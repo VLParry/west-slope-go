@@ -2,9 +2,6 @@ import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
 
-//Can't get create activity to work.
-//After creating activity I'd like it to take the user to their activities page 
-
 const CreateActivity = ( { handleAddActivity} ) => {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")

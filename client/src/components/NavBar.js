@@ -14,7 +14,6 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { useUserContext } from '../context/UserContext';
 
-//how can I have user's name show up where the user icon currently is?
 
 const NavBar = () => {
   const [auth, setAuth] = React.useState(true);
