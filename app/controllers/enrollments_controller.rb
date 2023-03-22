@@ -1,13 +1,13 @@
 class EnrollmentsController < ApplicationController
-    skip_before_action :authorized
+    before_action :authorized
 
-    def index 
-        render json: Enrollment.all
-    end
+    # def index 
+    #     render json: Enrollment.all
+    # end
 
-    def show
-       find_enrollment
-    end
+    # def show
+    #    find_enrollment
+    # end
 
     def create 
         activity = Activity.find(params[:activity_id])
@@ -18,15 +18,23 @@ class EnrollmentsController < ApplicationController
 
     def update
         enrollment = Enrollment.find(params[:id])
-        enrollment.update(enrollment_params)
-        render json: enrollment 
+        if enrollment.user == @current_user
+            enrollment.update(enrollment_params)
+            render json: enrollment 
+        else
+            render json: { error: 'Not Authorized' }, status: :unauthorized
+        end
     end
 
 #below is not working using find_enrollment 
     def destroy
         enrollment = Enrollment.find(params[:id])
-        enrollment.destroy
-        head :no_content
+        if enrollment.user == @current_user
+            enrollment.destroy
+            head :no_content
+        else
+            render json: { error: 'Not Authorized' }, status: :unauthorized
+        end 
     end
 
     private
@@ -38,4 +46,5 @@ class EnrollmentsController < ApplicationController
     def find_enrollment
         enrollment = Enrollment.find(params[:id])
     end 
+
 end
