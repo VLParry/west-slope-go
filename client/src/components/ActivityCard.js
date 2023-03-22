@@ -1,11 +1,11 @@
 import {useState} from 'react';
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
+// import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -154,7 +154,6 @@ function editActivity(e) {
             label="How many people?"
             type="number"
             min={1}
-            fullWidth
             value={numberOfAttendees}
             variant="standard"
             onChange={(e) => setNumberOfAttendees(e.target.value)}

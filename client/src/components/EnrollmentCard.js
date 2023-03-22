@@ -27,6 +27,8 @@ const EnrollmentCard = ( {title, date, time,  enrollment_id, location, handleDel
 }
 
 function handleSave() {
+  setErrors([])
+
   fetch(`/enrollments/${enrollment_id}`, {
     method: 'PATCH',
     headers: {
@@ -43,6 +45,7 @@ function handleSave() {
       }
     })
 }
+
 
   return (
     <div style={{margin: '10%'}}>
@@ -70,7 +73,7 @@ function handleSave() {
             label="How many people?"
             type="number"
             min={1}
-            fullWidth
+            // fullWidth
             value={numberOfAttendees}
             variant="standard"
             onChange={(e) => setNumberOfAttendees(e.target.value)}
