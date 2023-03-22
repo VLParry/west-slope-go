@@ -31,7 +31,7 @@ function App() {
 },[]);
 // //empty dependency array only loads on the first time
 
-if (!user) return <Login onLogin={setUser} />
+if (!user.id) return <Login onLogin={setUser} />
 
 const handleAddActivity = (newActivity) => {
   setActivities([...activities, newActivity])
