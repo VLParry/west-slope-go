@@ -9,7 +9,7 @@ const Activities = ( { activities, setActivities } ) => {
     fetch("/activities")
       .then((r) => r.json())
       .then(setActivities);
-  }, []);
+  }, [setActivities]);
 
   const handleEditActivity = (updatedActivity) => {
     const updatedActivities = activities.map((activity) =>

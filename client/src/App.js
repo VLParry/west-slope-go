@@ -28,7 +28,7 @@ function App() {
       });
     }
   });
-},[]);
+},[setUser]);
 // //empty dependency array only loads on the first time
 
 if (!user.id) return <Login onLogin={setUser} />

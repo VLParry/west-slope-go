@@ -9,7 +9,9 @@ class SessionsController < ApplicationController
         if user&.authenticate(params[:password])
             #& is handling a nil possibility
             #create a new session
+            
             session[:user_id] = user.id 
+            # byebug
             render json: user
         else
             render json: {errors: ["Invalid email or password"]}, status: :unauthorized
