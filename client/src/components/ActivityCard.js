@@ -12,9 +12,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc'
 import { useUserContext } from '../context/UserContext';
 import { useNavigate } from "react-router-dom";
-
+dayjs.extend(utc)
 // import { blue } from '@mui/material/colors';
 // import { DeleteOutlined } from '@mui/icons-material'
 // import { grid } from '@mui/system';
@@ -35,7 +36,7 @@ const ActivityCard = ({title, description, time, date,location, activityId, hand
   const [errors, setErrors] = useState([])
   const navigate = useNavigate([])
   const formattedDate = dayjs(date).format('MMMM D, YYYY') 
-  const formattedTime = dayjs(time, 'HH:mm').format('h:mm A')
+  const formattedTime = dayjs(time).utc().format('h:mm A')
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {

@@ -5,11 +5,12 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
-
+import utc from 'dayjs/plugin/utc'
+dayjs.extend(utc)
 
 const EnrollmentCard = ( {title, date, time,  enrollment_id, location, handleDeleteEnrollment, howMany, handleEditAttendees, activity }) => {
   const formattedDate = dayjs(date).format('MMMM D, YYYY') 
-  const formattedTime = dayjs(time, 'HH:mm').format('h:mm A')
+  const formattedTime = dayjs(time).utc().format('h:mm A')
   const [errors, setErrors] = useState([])
   const [numberOfAttendees, setNumberOfAttendees] = useState(howMany)
   const [editNumber, setEditNumber] = useState(false)

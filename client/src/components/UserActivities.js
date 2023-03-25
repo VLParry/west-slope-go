@@ -1,7 +1,7 @@
 import React from 'react'
 import EnrollmentCard from './EnrollmentCard'
 import { useUserContext } from '../context/UserContext'
-import { useResolvedPath } from 'react-router-dom'
+
 
 
 const UserActivities = (  ) => {
