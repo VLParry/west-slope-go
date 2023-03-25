@@ -25,7 +25,7 @@ const NavBar = () => {
     setAuth(event.target.checked);
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
-        setUser([]);
+        setUser({activities: []});
       }
     });
   };
